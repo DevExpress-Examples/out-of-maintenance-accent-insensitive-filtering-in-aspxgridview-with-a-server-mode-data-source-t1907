@@ -1,3 +1,10 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [AccentInsensitiveFilterOperator.cs](./CS/XpoWebApplication/AccentInsensitiveFilterOperator.cs) (VB: [AccentInsensitiveFilterOperator.vb](./VB/XpoWebApplication/AccentInsensitiveFilterOperator.vb))
+* [Default.aspx](./CS/XpoWebApplication/Default.aspx) (VB: [Default.aspx](./VB/XpoWebApplication/Default.aspx))
+* [Default.aspx.cs](./CS/XpoWebApplication/Default.aspx.cs) (VB: [Default.aspx](./VB/XpoWebApplication/Default.aspx))
+<!-- default file list end -->
 # Accent-insensitive filtering in ASPxGridView with a Server Mode data source
 
 
