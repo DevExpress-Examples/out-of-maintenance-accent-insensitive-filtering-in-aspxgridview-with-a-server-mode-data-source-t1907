@@ -85,12 +85,12 @@ Namespace PersistentObjects
 			MyBase.New(session)
 		End Sub
 
-		Private _OrderDate As Date
-		Public Property OrderDate() As Date
+		Private _OrderDate As DateTime
+		Public Property OrderDate() As DateTime
 			Get
 				Return _OrderDate
 			End Get
-			Set(ByVal value As Date)
+			Set(ByVal value As DateTime)
 				SetPropertyValue("OrderDate", _OrderDate, value)
 			End Set
 		End Property

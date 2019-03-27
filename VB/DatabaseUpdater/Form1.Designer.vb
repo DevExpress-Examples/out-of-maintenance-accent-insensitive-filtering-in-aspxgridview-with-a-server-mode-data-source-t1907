@@ -47,7 +47,8 @@ Namespace DatabaseUpdater
 			Me.button1.TabIndex = 0
 			Me.button1.Text = "Create Schema"
 			Me.button1.UseVisualStyleBackColor = True
-'			Me.button1.Click += New System.EventHandler(Me.button1_Click)
+'INSTANT VB NOTE: The following InitializeComponent event wireup was converted to a 'Handles' clause:
+'ORIGINAL LINE: this.button1.Click += new System.EventHandler(this.button1_Click);
 			' 
 			' textBox1
 			' 
@@ -56,7 +57,8 @@ Namespace DatabaseUpdater
 			Me.textBox1.ReadOnly = True
 			Me.textBox1.Size = New System.Drawing.Size(632, 20)
 			Me.textBox1.TabIndex = 1
-			Me.textBox1.Text = "XpoProvider=MSSqlServer;data source=(local);integrated security=SSPI;initial cata" & "log=XpoWebTest"
+			Me.textBox1.Text = "XpoProvider=MSSqlServer;data source=(local);integrated security=SSPI;initial cata" &
+				"log=XpoWebTest"
 			' 
 			' label1
 			' 
@@ -75,7 +77,8 @@ Namespace DatabaseUpdater
 			Me.button2.TabIndex = 3
 			Me.button2.Text = "Create Default Data"
 			Me.button2.UseVisualStyleBackColor = True
-'			Me.button2.Click += New System.EventHandler(Me.button2_Click)
+'INSTANT VB NOTE: The following InitializeComponent event wireup was converted to a 'Handles' clause:
+'ORIGINAL LINE: this.button2.Click += new System.EventHandler(this.button2_Click);
 			' 
 			' Form1
 			' 
@@ -88,7 +91,8 @@ Namespace DatabaseUpdater
 			Me.Controls.Add(Me.button1)
 			Me.Name = "Form1"
 			Me.Text = "Form1"
-'			Me.Load += New System.EventHandler(Me.Form1_Load)
+'INSTANT VB NOTE: The following InitializeComponent event wireup was converted to a 'Handles' clause:
+'ORIGINAL LINE: this.Load += new System.EventHandler(this.Form1_Load);
 			Me.ResumeLayout(False)
 			Me.PerformLayout()
 

@@ -30,18 +30,32 @@ Namespace XpoWebApplication
 			End If
 			Dim co As CriteriaOperator = CriteriaOperator.Parse(ASPxGridView1.FilterExpression)
 			FindAndRemoveCustomOperator(co, e.Column.FieldName)
-
 			Dim fo As FunctionOperator = Nothing
 			If e.Value.Length > 0 Then
 				fo = New FunctionOperator(FunctionOperatorType.Custom, AccentInsensitiveFilterStatic.Name, e.Value, New OperandProperty(e.Column.FieldName))
 			End If
-			If (Not ReferenceEquals(co, Nothing)) OrElse (Not ReferenceEquals(fo, Nothing)) Then
-				ASPxGridView1.FilterExpression = MergeCriterias(co, fo).ToString()
+			If Not ReferenceEquals(co, Nothing) OrElse Not ReferenceEquals(fo, Nothing) Then
+				e.Criteria = MergeCriterias(co, fo)
 			Else
-				ASPxGridView1.FilterExpression = ""
+				e.Criteria = Nothing
 			End If
-			e.Criteria = Nothing
 		End Sub
+		Protected Sub ASPxGridView1_AutoFilterCellEditorInitialize(ByVal sender As Object, ByVal e As ASPxGridViewEditorEventArgs)
+			If String.IsNullOrEmpty(ASPxGridView1.FilterExpression) OrElse Not ASPxGridView1.FilterExpression.Contains(AccentInsensitiveFilterStatic.Name) Then
+				Return
+			End If
+			Dim co = CriteriaOperator.Parse(ASPxGridView1.FilterExpression)
+			Dim fo = FindAndRemoveCustomOperator(co, e.Column.FieldName)
+			If ReferenceEquals(fo, Nothing) Then
+				Return
+			End If
+			Dim oValue = TryCast(fo.Operands(1), OperandValue)
+			If ReferenceEquals(oValue, Nothing) Then
+				Return
+			End If
+			e.Editor.Value = oValue.Value.ToString()
+		End Sub
+
 		Protected Function MergeCriterias(ByVal co As CriteriaOperator, ByVal fo As FunctionOperator) As CriteriaOperator
 			If ReferenceEquals(fo, Nothing) Then
 				Return co
@@ -89,20 +103,5 @@ Namespace XpoWebApplication
 			End If
 			Return True
 		End Function
-		Protected Sub ASPxGridView1_AutoFilterCellEditorInitialize(ByVal sender As Object, ByVal e As ASPxGridViewEditorEventArgs)
-			If String.IsNullOrEmpty(ASPxGridView1.FilterExpression) OrElse (Not ASPxGridView1.FilterExpression.Contains(AccentInsensitiveFilterStatic.Name)) Then
-				Return
-			End If
-			Dim co = CriteriaOperator.Parse(ASPxGridView1.FilterExpression)
-			Dim fo = FindAndRemoveCustomOperator(co, e.Column.FieldName)
-			If ReferenceEquals(fo, Nothing) Then
-				Return
-			End If
-			Dim oValue = TryCast(fo.Operands(1), OperandValue)
-			If ReferenceEquals(oValue, Nothing) Then
-				Return
-			End If
-			e.Editor.Value = oValue.Value.ToString()
-		End Sub
 	End Class
 End Namespace

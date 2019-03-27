@@ -16,25 +16,21 @@ Imports DevExpress.Xpo.Metadata
 ''' <summary>
 ''' Summary description for XpoHelper
 ''' </summary>
-Public NotInheritable Class XpoHelper
-
-	Private Sub New()
-	End Sub
-
-	Public Shared Function GetNewSession() As Session
+Public Module XpoHelper
+	Public Function GetNewSession() As Session
 		Return New Session(DataLayer)
 	End Function
 
-	Public Shared Function GetNewUnitOfWork() As UnitOfWork
+	Public Function GetNewUnitOfWork() As UnitOfWork
 		Return New UnitOfWork(DataLayer)
 	End Function
 
-	Private ReadOnly Shared lockObject As New Object()
+	Private ReadOnly lockObject As New Object()
 
 'INSTANT VB TODO TASK: There is no VB equivalent to 'volatile':
 'ORIGINAL LINE: static volatile IDataLayer fDataLayer;
-	Private Shared fDataLayer As IDataLayer
-	Private Shared ReadOnly Property DataLayer() As IDataLayer
+	Private fDataLayer As IDataLayer
+	Private ReadOnly Property DataLayer() As IDataLayer
 		Get
 			If fDataLayer Is Nothing Then
 				SyncLock lockObject
@@ -47,7 +43,7 @@ Public NotInheritable Class XpoHelper
 		End Get
 	End Property
 
-	Private Shared Function GetDataLayer() As IDataLayer
+	Private Function GetDataLayer() As IDataLayer
 		' set XpoDefault.Session to null to prevent accidental use of XPO default session
 		XpoDefault.Session = Nothing
 
@@ -73,4 +69,4 @@ Public NotInheritable Class XpoHelper
 
 		Return dl
 	End Function
-End Class
+End Module
